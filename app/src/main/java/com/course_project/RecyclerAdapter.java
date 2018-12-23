@@ -1,6 +1,8 @@
 package com.course_project;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -55,10 +57,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case 0:  //不同的布局，做不同的事
+
                 final RecVH holderOne = (RecVH) holder;
                 holderOne.tvtitle.setText(feed.getItem(position).getTitle());
                 holderOne.tvtime.setText(feed.getItem(position).getPubdate());
-
+//                Log.e("title", feed.getItem(position).getTitle());
+                holderOne.title = feed.getItem(position).getTitle();
+                holderOne.content = feed.getItem(position).getDescription();
+                holderOne.time = feed.getItem(position).getPubdate();
                 break;
             case 1:
                 final HeaderView holderTwo = (HeaderView) holder;
@@ -87,13 +93,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tvtitle;
         @BindView(R.id.time_view)
         TextView tvtime;
+        public String title = "title";
+        public String content = "content";
+        public String time = "time";
+
         public RecVH (View view){
             super(view);
             ButterKnife.bind(this, view);
+
         }
         @OnClick(R.id.cv_test)
         void onclick(){
-            Log.e("test", "finish");
+            Intent intent = new Intent(mContext, ContentActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            bundle.putString("content", content);
+            bundle.putString("time", time);
+            intent.putExtra("bun", bundle);
+            mContext.startActivity(intent);
         }
     }
 
