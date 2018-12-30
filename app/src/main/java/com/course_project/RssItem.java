@@ -1,6 +1,8 @@
 package com.course_project;
 
-public class RssItem {
+import java.io.Serializable;
+
+public class RssItem implements Serializable {
     private String title;
     private String description;
     private String link;

@@ -29,6 +29,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerAdapter(RssFeed feed,Context context){
         this.feed = feed;
         this.mContext = context;
+
     }
 
     @Override

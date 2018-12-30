@@ -1,9 +1,10 @@
 package com.course_project;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RssFeed {
+public class RssFeed implements Serializable {
     private String title; // 标题
     private String pubdate; // 发布日期
     private int itemCount; // 用于计算列表的数目
